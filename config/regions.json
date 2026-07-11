@@ -1,0 +1,205 @@
+{
+  "registryVersion": "1.0.0",
+  "regions": [
+    {
+      "code": "CN",
+      "slug": "cn-mainland",
+      "name": "China Mainland",
+      "group": "Greater China",
+      "egressCity": "Shanghai",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "HK",
+      "slug": "hong-kong",
+      "name": "Hong Kong",
+      "group": "Greater China",
+      "egressCity": "Hong Kong",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "MO",
+      "slug": "macau",
+      "name": "Macau",
+      "group": "Greater China",
+      "egressCity": "Macau",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "TW",
+      "slug": "taiwan",
+      "name": "Taiwan",
+      "group": "Greater China",
+      "egressCity": "Taipei",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "JP",
+      "slug": "japan",
+      "name": "Japan",
+      "group": "East Asia",
+      "egressCity": "Tokyo",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "KR",
+      "slug": "south-korea",
+      "name": "South Korea",
+      "group": "East Asia",
+      "egressCity": "Seoul",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "SG",
+      "slug": "singapore",
+      "name": "Singapore",
+      "group": "Southeast Asia",
+      "egressCity": "Singapore",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "MY",
+      "slug": "malaysia",
+      "name": "Malaysia",
+      "group": "Southeast Asia",
+      "egressCity": "Kuala Lumpur",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "TH",
+      "slug": "thailand",
+      "name": "Thailand",
+      "group": "Southeast Asia",
+      "egressCity": "Bangkok",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "ID",
+      "slug": "indonesia",
+      "name": "Indonesia",
+      "group": "Southeast Asia",
+      "egressCity": "Jakarta",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "VN",
+      "slug": "vietnam",
+      "name": "Vietnam",
+      "group": "Southeast Asia",
+      "egressCity": "Ho Chi Minh City",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "PH",
+      "slug": "philippines",
+      "name": "Philippines",
+      "group": "Southeast Asia",
+      "egressCity": "Manila",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "IN",
+      "slug": "india",
+      "name": "India",
+      "group": "South Asia",
+      "egressCity": "Mumbai",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "AU",
+      "slug": "australia",
+      "name": "Australia",
+      "group": "Oceania",
+      "egressCity": "Sydney",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "NZ",
+      "slug": "new-zealand",
+      "name": "New Zealand",
+      "group": "Oceania",
+      "egressCity": "Auckland",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "US",
+      "slug": "united-states",
+      "name": "United States",
+      "group": "North America",
+      "egressCity": "New York",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "CA",
+      "slug": "canada",
+      "name": "Canada",
+      "group": "North America",
+      "egressCity": "Toronto",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "GB",
+      "slug": "united-kingdom",
+      "name": "United Kingdom",
+      "group": "Europe",
+      "egressCity": "London",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "DE",
+      "slug": "germany",
+      "name": "Germany",
+      "group": "Europe",
+      "egressCity": "Frankfurt",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    },
+    {
+      "code": "FR",
+      "slug": "france",
+      "name": "France",
+      "group": "Europe",
+      "egressCity": "Paris",
+      "defaultLocale": "en-US",
+      "defaultTimezone": "UTC",
+      "phase": 1
+    }
+  ]
+}

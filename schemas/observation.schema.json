@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/observation.schema.json",
+  "title": "Provider Page Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "observationId",
+    "runId",
+    "sequence",
+    "capturedAt",
+    "status",
+    "entryPoint",
+    "navigation",
+    "metrics",
+    "artifacts",
+    "detections",
+    "limitations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[0-9]{8}T[0-9]{6}Z-[a-z0-9]{8}-[0-9]{3}$"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^[0-9]{8}T[0-9]{6}Z-[a-z0-9]{8}$"
+    },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["complete", "partial", "failed"] },
+    "entryPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["surface", "label", "url"],
+      "properties": {
+        "surface": {
+          "enum": [
+            "apple-weather-app",
+            "apple-weather-web",
+            "manual-provider-url",
+            "other"
+          ]
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "providerCategory": {
+          "enum": ["weather", "severe-weather", "air-quality", "radar", "other"]
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "redirects"],
+      "properties": {
+        "mode": {
+          "enum": [
+            "apple-ui",
+            "safari",
+            "embedded-webview",
+            "third-party-browser",
+            "same-browser-tab",
+            "new-browser-tab",
+            "unknown"
+          ]
+        },
+        "finalUrl": { "type": "string", "format": "uri" },
+        "redirects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["url", "status"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "status": { "type": "integer", "minimum": 100, "maximum": 599 }
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["redirectCount", "requestCount", "thirdPartyRequestCount"],
+      "properties": {
+        "pageLoadMs": { "type": "integer", "minimum": 0 },
+        "redirectCount": { "type": "integer", "minimum": 0 },
+        "requestCount": { "type": "integer", "minimum": 0 },
+        "thirdPartyRequestCount": { "type": "integer", "minimum": 0 },
+        "visibleAdCount": { "type": ["integer", "null"], "minimum": 0 },
+        "popupCount": { "type": ["integer", "null"], "minimum": 0 },
+        "cookieBanner": { "type": ["boolean", "null"] },
+        "consentDialog": { "type": ["boolean", "null"] },
+        "fullScreenAd": { "type": ["boolean", "null"] }
+      }
+    },
+    "artifacts": { "type": "array", "items": { "$ref": "#/$defs/artifact" } },
+    "detections": { "type": "array", "items": { "$ref": "#/$defs/detection" } },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "failure": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "path",
+        "mediaType",
+        "bytes",
+        "sha256",
+        "sanitization"
+      ],
+      "properties": {
+        "kind": {
+          "enum": ["html", "screenshot", "har", "console", "headers", "other"]
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "mediaType": { "type": "string", "minLength": 3 },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "sanitization": {
+          "enum": ["raw-local-only", "redacted", "publishable-reviewed"]
+        }
+      }
+    },
+    "detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ruleId",
+        "ruleSetVersion",
+        "category",
+        "confidence",
+        "signal",
+        "artifactPath"
+      ],
+      "properties": {
+        "ruleId": { "type": "string", "minLength": 3 },
+        "ruleSetVersion": { "type": "string", "minLength": 1 },
+        "category": {
+          "enum": [
+            "advertising",
+            "analytics",
+            "tracking",
+            "consent",
+            "unknown-third-party"
+          ]
+        },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "signal": { "type": "string", "minLength": 1 },
+        "artifactPath": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

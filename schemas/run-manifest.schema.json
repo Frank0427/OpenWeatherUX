@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/run-manifest.schema.json",
+  "title": "Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "experimentId",
+    "protocolVersion",
+    "startedAt",
+    "status",
+    "targetRegion",
+    "controls",
+    "software"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "runId": {
+      "type": "string",
+      "pattern": "^[0-9]{8}T[0-9]{6}Z-[a-z0-9]{8}$"
+    },
+    "experimentId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$" },
+    "protocolVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": "string", "format": "date-time" },
+    "status": {
+      "enum": ["planned", "running", "complete", "partial", "failed"]
+    },
+    "targetRegion": { "$ref": "#/$defs/region" },
+    "observedEgress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verifiedAt", "countryCode", "method"],
+      "properties": {
+        "verifiedAt": { "type": "string", "format": "date-time" },
+        "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "city": { "type": "string", "minLength": 1 },
+        "method": { "type": "string", "minLength": 1 }
+      }
+    },
+    "controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "collector",
+        "os",
+        "browser",
+        "viewport",
+        "locale",
+        "timezone",
+        "userAgent",
+        "accountState",
+        "storageState"
+      ],
+      "properties": {
+        "collector": { "type": "string", "minLength": 1 },
+        "os": { "type": "string", "minLength": 1 },
+        "browser": { "type": "string", "minLength": 1 },
+        "viewport": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height", "deviceScaleFactor"],
+          "properties": {
+            "width": { "type": "integer", "minimum": 1 },
+            "height": { "type": "integer", "minimum": 1 },
+            "deviceScaleFactor": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        },
+        "locale": { "type": "string", "minLength": 2 },
+        "timezone": { "type": "string", "minLength": 1 },
+        "userAgent": { "type": "string", "minLength": 1 },
+        "accountState": {
+          "enum": ["signed-out", "signed-in-redacted", "not-applicable"]
+        },
+        "storageState": { "enum": ["clean", "preserved", "not-applicable"] }
+      }
+    },
+    "changedVariables": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true,
+      "default": ["network-egress-region"]
+    },
+    "software": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commitSha",
+        "nodeVersion",
+        "ruleSetVersion",
+        "regionRegistryVersion"
+      ],
+      "properties": {
+        "commitSha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "nodeVersion": { "type": "string", "minLength": 1 },
+        "ruleSetVersion": { "type": "string", "minLength": 1 },
+        "regionRegistryVersion": { "type": "string", "minLength": 1 }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "failure": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "slug", "egressCity"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "slug": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" },
+        "egressCity": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
